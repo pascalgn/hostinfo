@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hostinfo
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: hostinfo
+    spec:
+      containers:
+        - name: hostinfo-container
+          image: pascalgn/hostinfo
+          ports:
+            - containerPort: 5000
+              name: hostinfo-port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hostinfo
+  labels:
+    app: hostinfo
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      name: hostinfo-service-port
+  selector:
+      app: hostinfo
