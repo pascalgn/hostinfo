@@ -26,6 +26,7 @@ spec:
   type: LoadBalancer
   ports:
     - port: 80
+      targetPort: 5000
       name: hostinfo-service-port
   selector:
       app: hostinfo
