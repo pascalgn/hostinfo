@@ -16,4 +16,4 @@ To run in Kubernetes, use
 
 ## License
 
-Hostinfo is licensed under the ISC License
+[ISC](LICENSE)
