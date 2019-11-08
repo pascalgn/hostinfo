@@ -1,5 +1,0 @@
-apiVersion: v1
-appVersion: "1.0"
-description: Flask server that displays environment variables and request headers
-name: hostinfo
-version: 0.1.0
