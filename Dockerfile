@@ -1,7 +1,14 @@
-FROM jfloff/alpine-python:2.7-slim
+FROM node:alpine
 
-RUN pip install flask
-COPY hostinfo.py /hostinfo.py
+RUN apk add --no-cache tini \
+    && npm install -g express \
+    && adduser -D -g hostinfo hostinfo
 
-EXPOSE 5000
-ENTRYPOINT ["python", "/hostinfo.py"]
+ENV NODE_PATH=/usr/local/lib/node_modules
+
+COPY hostinfo.js /hostinfo.js
+
+USER hostinfo
+WORKDIR /home/hostinfo
+
+ENTRYPOINT ["tini", "--", "/hostinfo.js"]
